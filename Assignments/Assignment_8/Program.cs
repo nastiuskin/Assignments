@@ -59,6 +59,7 @@ public class Program
                                  }).ToList();
 
         longBooksV4.ForEach(x => Console.WriteLine($"Title: {x.Title}, Pages: {x.Pages}"));
+
         Console.WriteLine();
 
         var popularBooksV4 = books.Where(x => x.Rating >= 8)
