@@ -19,10 +19,12 @@ public class Program
         //Manipulate collection via Delegates
 
         var longBooks = FilterBooks(books, HasManypages);
+
         Console.WriteLine("Books with more than 300 pages:\n");
         longBooks.ForEach(b => Console.WriteLine(b.Title));
 
         var popularBooks = FilterBooks(books, HasHighRating);
+
         Console.WriteLine("\nBooks with rating higher than 8:\n");
         popularBooks.ForEach(b => Console.WriteLine(b.Title));
         Console.WriteLine();
@@ -39,35 +41,42 @@ public class Program
             return book.Rating >= 8;
         });
 
-        //Rewrite using anonymous functions
+
+        //Rewrite using lambda expressions
 
         List<Book> longBooksV3 = FilterBooks(books, book => book.Pages > 300);
         List<Book> popularBooksV3 = FilterBooks(books, book => book.Rating >= 8);
+
 
         //Use extension methods on the collection
 
         books.PrintAll();
         books.FilterByGenreAndRating("Dystopia", 5);
 
+
         //Use Select/Where operations on the collection
 
-        var longBooksV4 = books.Where(x => x.Pages > 300)
-                                 .Select(x => new
-                                 {
-                                     Title = x.Title,
-                                     Pages = x.Pages
-                                 }).ToList();
+        var longBooksV4 = books
+            .Where(x => x.Pages > 300)
+            .Select(x => new
+            {
+                Title = x.Title,
+                Pages = x.Pages
+            })
+            .ToList();
 
         longBooksV4.ForEach(x => Console.WriteLine($"Title: {x.Title}, Pages: {x.Pages}"));
 
         Console.WriteLine();
 
-        var popularBooksV4 = books.Where(x => x.Rating >= 8)
-                                 .Select(x => new
-                                 {
-                                     Title = x.Title,
-                                     Rating = x.Rating
-                                 }).ToList();
+        var popularBooksV4 = books
+           .Where(x => x.Rating >= 8)
+           .Select(x => new
+           {
+               Title = x.Title,
+               Rating = x.Rating
+           })
+           .ToList();
 
         popularBooksV4.ForEach(x => Console.WriteLine($"Title: {x.Title}, Rating: {x.Rating}"));
     }
