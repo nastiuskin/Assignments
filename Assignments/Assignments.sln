@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_8", "Assignment_8.csproj", "{D139DC8A-EAFF-4456-99B6-3F27CE438C87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_9", "..\Assignment_9\Assignment_9.csproj", "{4121AD0C-9A69-4900-AA64-60545F549DA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assign_8", "Assign_8", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assign_9", "Assign_9", "{95C67DEC-F105-4392-AB45-2BA7C4C96120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D139DC8A-EAFF-4456-99B6-3F27CE438C87} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4121AD0C-9A69-4900-AA64-60545F549DA1} = {95C67DEC-F105-4392-AB45-2BA7C4C96120}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E102041F-6678-461D-B095-D2EF844694AC}
