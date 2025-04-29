@@ -1,13 +1,12 @@
 ﻿using Assignment_10;
 using Assignment_10.Services;
+using Assignment_10_11.Contracts;
 using Assignment_11;
 using Assignment_11.Enums;
 using Microsoft.Extensions.Configuration;
 
 class Program
 {
-    private const int MaxAttempts = 3;
-
     static async Task Main(string[] args)
     {
         var logger = new FileLogger();
@@ -26,10 +25,20 @@ class Program
             Console.WriteLine("Missing required settings. Please, ensure everything is ok");
             return;
         }
-      
+
         var emailSender = new SmtpEmailSender(smtpSettings, logger);
-        var appService = new EmailAppService(emailSender,emailValidator, logger);
+        var pushNotificationClient = new PushNotificationClient();
+        var emailClient = new EmailClient(emailSender, emailValidator, logger);
+
+        var emailChannel = new EmailNotificationChannel(emailClient);
+        var pushChannel = new PushNotificationChannel(pushNotificationClient);  
+
+        var channels = new List<INotificationChannel> { emailChannel, pushChannel };
+
+        var notificationService = new NotificationService(channels);
+
+        var appService = new AppService(logger, notificationService);
 
         await appService.RunAsync();
-    }  
+    }
 }

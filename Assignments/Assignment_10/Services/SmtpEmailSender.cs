@@ -1,33 +1,24 @@
-﻿using Assignment_10_11.Contracts;
-using Assignment_11.Contracts;
-using Assignment_11.Enums;
+﻿using Assignment_11.Enums;
 using System.Net;
 using System.Net.Mail;
+using ILogger = Assignment_11.Contracts.ILogger;
 
 namespace Assignment_10.Services
 {
-    public class SmtpEmailSender : IEmailSender
+    public class SmtpEmailSender(SmtpOptions smtpOptions,ILogger logger)
     {
-        private SmtpOptions _smtpOptions { get; set; }
-        private ILogger _logger { get; set; }
-        public SmtpEmailSender(SmtpOptions smtpOptions, ILogger logger)
-        {
-            _smtpOptions = smtpOptions;
-            _logger = logger;
-        }
-
         public async Task SendEmailAsync(string recipientEmail, string messageBody)
         {
             try
             {
-                using (var client = new SmtpClient(_smtpOptions.Host, _smtpOptions.Port))
+                using (var client = new SmtpClient(smtpOptions.Host, smtpOptions.Port))
                 {
-                    client.EnableSsl = _smtpOptions.EnableSsl;
-                    client.Credentials = new NetworkCredential(_smtpOptions.Username, _smtpOptions.Password);
+                    client.EnableSsl = smtpOptions.EnableSsl;
+                    client.Credentials = new NetworkCredential(smtpOptions.Username, smtpOptions.Password);
 
                     using (var message = new MailMessage())
                     {
-                        message.From = new MailAddress(_smtpOptions.Username, "Newsletter Team");
+                        message.From = new MailAddress(smtpOptions.Username, "Newsletter Team");
                         message.To.Add(recipientEmail);
                         message.Subject = "Message from Newsletter Team";
                         message.Body = messageBody;
@@ -37,15 +28,15 @@ namespace Assignment_10.Services
                     }
                 }
 
-                await _logger.LogAsync("SendEmailAsync", $"Email sent successfuly to {recipientEmail}. Message: {messageBody}", LogType.Info);
+                await logger.LogAsync("SendEmailAsync", $"Email sent successfuly to {recipientEmail}. Message: {messageBody}", LogType.Info);
                 Console.WriteLine("Email sent successfully!");
             }
             catch (Exception ex)
             {
-                await _logger.LogAsync("SendEmailAsync", $"Failed to send email to {recipientEmail}. Error: {ex.Message}", LogType.Error);
+                await logger.LogAsync("SendEmailAsync", $"Failed to send email to {recipientEmail}. Error: {ex.Message}", LogType.Error);
                 Console.WriteLine($"Error sending email. Please, try again later...");
             }
-        }
+        }     
     }
 }
 
