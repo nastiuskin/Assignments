@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using Assignment_10_11.Contracts;
+using Assignment_11.Contracts;
+using Assignment_11.Enums;
+using System.Net;
 using System.Net.Mail;
 
 namespace Assignment_10.Services
@@ -6,9 +9,11 @@ namespace Assignment_10.Services
     public class SmtpEmailSender : IEmailSender
     {
         private SmtpOptions _smtpOptions { get; set; }
-        public SmtpEmailSender(SmtpOptions smtpOptions)
+        private ILogger _logger { get; set; }
+        public SmtpEmailSender(SmtpOptions smtpOptions, ILogger logger)
         {
             _smtpOptions = smtpOptions;
+            _logger = logger;
         }
 
         public async Task SendEmailAsync(string recipientEmail, string messageBody)
@@ -32,11 +37,13 @@ namespace Assignment_10.Services
                     }
                 }
 
+                await _logger.LogAsync("SendEmailAsync", $"Email sent successfuly to {recipientEmail}. Message: {messageBody}", LogType.Info);
                 Console.WriteLine("Email sent successfully!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending email: {ex.Message}");
+                await _logger.LogAsync("SendEmailAsync", $"Failed to send email to {recipientEmail}. Error: {ex.Message}", LogType.Error);
+                Console.WriteLine($"Error sending email. Please, try again later...");
             }
         }
     }

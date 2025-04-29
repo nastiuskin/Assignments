@@ -1,4 +1,4 @@
-﻿namespace Assignment_10.Services
+﻿namespace Assignment_10_11.Contracts
 {
     public interface IEmailSender
     {

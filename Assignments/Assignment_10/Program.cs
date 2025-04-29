@@ -1,5 +1,6 @@
 ﻿using Assignment_10;
 using Assignment_10.Services;
+using Assignment_11;
 using Microsoft.Extensions.Configuration;
 
 class Program
@@ -10,7 +11,7 @@ class Program
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("appsettings.json", optional: false)
             .Build();
 
         var smtpSettings = configuration.GetSection("SmtpSettings").Get<SmtpOptions>();
@@ -21,57 +22,10 @@ class Program
             return;
         }
 
-        var emailSender = new SmtpEmailSender(smtpSettings);
+        var logger = new FileLogger();
+        var emailSender = new SmtpEmailSender(smtpSettings, logger);
+        var appService = new EmailAppService(emailSender, logger);
 
-        var recipientEmail = PromptForValidEmail();
-
-        if (string.IsNullOrEmpty(recipientEmail))
-        {
-            Console.WriteLine("Too many invalid attempts. Please, try again later.");
-            return;
-        }
-
-        var messageBody = PromptForValidMessage();
-
-        if (string.IsNullOrEmpty(messageBody))
-        {
-            Console.WriteLine("Too many invalid attempts. Please, try again later.");
-            return;
-        }
-
-        await emailSender.SendEmailAsync(recipientEmail, messageBody);
-    }
-
-    private static string? PromptForValidEmail()
-    {
-        var emailAddress = "";
-        for (int attempt = 1; attempt <= MaxAttempts; attempt++)
-        {
-            Console.WriteLine("Please enter the recipient's email address:");
-            emailAddress = Console.ReadLine();
-
-            if (EmailValidator.ValidateEmail(emailAddress).IsSuccess)
-                break;
-
-            Console.WriteLine($"Invalid email address. Attempt {attempt}/{MaxAttempts}.");
-        }
-        return emailAddress;
-    }
-
-    private static string? PromptForValidMessage()
-    {
-        var messageBody = "";
-
-        for (int attempt = 1; attempt <= MaxAttempts; attempt++)
-        {
-            Console.WriteLine("Please enter the message you want to send:");
-            messageBody = Console.ReadLine();
-
-            if (EmailValidator.ValidateEmailBody(messageBody).IsSuccess)
-                break;
-
-            Console.WriteLine($"Invalid message body. Attempt {attempt}/{MaxAttempts}.");
-        }
-        return messageBody;
-    }
+        await appService.RunAsync();
+    }  
 }
