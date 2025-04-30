@@ -23,8 +23,15 @@ namespace Assignment_12.PushConsoleApp
                     {
                         var message = reader.ReadLine();
                         if (message != null)
-                            Console.WriteLine($"Received push notification to:  {message}");
+                        {
+                            if (message == "exit")
+                            {
+                                Console.WriteLine("Received shutdown signal.");
+                                break;
+                            }
 
+                            Console.WriteLine($"Received push notification: {message}");
+                        }
                     }
                 }
             }

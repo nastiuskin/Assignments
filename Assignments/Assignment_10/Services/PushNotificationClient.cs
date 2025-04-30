@@ -10,15 +10,13 @@ namespace Assignment_10.Services
 
         public Task SendPushNotificationAsync(string recipient, string messageBody)
         {
-            var message = $"{recipient}: {messageBody}";
-
             using (var client = new TcpClient(ServerAddress, Port))
             {
                 using (var networkStream = client.GetStream())
                 {
                     using (var writer = new System.IO.StreamWriter(networkStream, Encoding.UTF8))
                     {
-                        writer.WriteLine(message);
+                        writer.WriteLine(messageBody);
                         writer.Flush();
                     }
                 }                   

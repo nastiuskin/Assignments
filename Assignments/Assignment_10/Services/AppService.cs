@@ -40,8 +40,12 @@ namespace Assignment_10.Services
 
                 Console.WriteLine("Do you want to send another message? (yes/no):");
                 var response = Console.ReadLine();
+
                 if (!string.Equals(response, "yes", StringComparison.OrdinalIgnoreCase))
+                {
+                    await notificationService.NotifyPushOnlyAsync("", "exit");
                     break;
+                }                   
             }
         }
 
