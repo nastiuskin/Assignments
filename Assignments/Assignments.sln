@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_8", "Assignment_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_9", "Assignment_9\Assignment_9.csproj", "{E389A6CE-618C-AD07-E723-4F9ECE3EBB6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_7", "..\..\Assignment_7\Assignment_7\Assignment_7.csproj", "{9873C4D0-BC0C-AA18-6CCF-D4FA7197AECE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_10", "Assignment_10\Assignment_10.csproj", "{54EAF0F2-775B-4AE1-897E-7322888B1318}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment_11", "Assignment_11\Assignment_11.csproj", "{97F0BCF9-7E57-4BEF-A6D2-84B9803AE6DD}"
@@ -27,10 +25,6 @@ Global
 		{E389A6CE-618C-AD07-E723-4F9ECE3EBB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E389A6CE-618C-AD07-E723-4F9ECE3EBB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E389A6CE-618C-AD07-E723-4F9ECE3EBB6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9873C4D0-BC0C-AA18-6CCF-D4FA7197AECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9873C4D0-BC0C-AA18-6CCF-D4FA7197AECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9873C4D0-BC0C-AA18-6CCF-D4FA7197AECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9873C4D0-BC0C-AA18-6CCF-D4FA7197AECE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54EAF0F2-775B-4AE1-897E-7322888B1318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54EAF0F2-775B-4AE1-897E-7322888B1318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54EAF0F2-775B-4AE1-897E-7322888B1318}.Release|Any CPU.ActiveCfg = Release|Any CPU

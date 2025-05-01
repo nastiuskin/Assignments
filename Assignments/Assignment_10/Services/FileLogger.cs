@@ -35,7 +35,7 @@ namespace Assignment_11
         private string GenerateLogMessage(string methodName, string message, LogType logType)
         {
             string timeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            return $"[{timeStamp}] [{logType}] Method: {methodName}, Message: {message}";
+            return $"[{timeStamp}] [{logType}] Method: {methodName}, Message: {message}\n";
         }
     }
 }
