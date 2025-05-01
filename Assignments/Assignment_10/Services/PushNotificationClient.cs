@@ -8,21 +8,16 @@ namespace Assignment_10.Services
         private const string ServerAddress = "127.0.0.1";
         private const int Port = 5000;
 
-        public Task SendPushNotificationAsync(string recipient, string messageBody)
+        public async Task SendPushNotificationAsync(string recipient, string messageBody)
         {
             using (var client = new TcpClient(ServerAddress, Port))
             {
                 using (var networkStream = client.GetStream())
                 {
-                    using (var writer = new System.IO.StreamWriter(networkStream, Encoding.UTF8))
-                    {
-                        writer.WriteLine(messageBody);
-                        writer.Flush();
-                    }
-                }                   
+                    using (var writer = new StreamWriter(networkStream))                    
+                        await writer.WriteLineAsync(messageBody);                   
+                }
             }
-                
-            return Task.CompletedTask;
         }
     }
 }

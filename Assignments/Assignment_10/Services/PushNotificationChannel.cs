@@ -2,8 +2,10 @@
 
 namespace Assignment_10.Services
 {
-    public class PushNotificationChannel(PushNotificationClient notificationClient) : INotificationChannel
+    public class PushNotificationChannel(PushNotificationClient notificationClient)
+        : INotificationChannel
     {
-        public async Task SendAsync(string recipient, string messageBody) => await notificationClient.SendPushNotificationAsync(recipient, messageBody);
+        public async Task SendAsync(string recipient, string messageBody) => 
+            await notificationClient.SendPushNotificationAsync(recipient, messageBody);
     }
 }

@@ -3,7 +3,10 @@ using ILogger = Assignment_11.Contracts.ILogger;
 
 namespace Assignment_10.Services
 {
-    public class EmailClient(SmtpEmailSender emailSender, EmailValidator emailValidator, ILogger logger)
+    public class EmailClient(
+        SmtpEmailSender emailSender, 
+        EmailValidator emailValidator, 
+        ILogger logger)
     {
         public async Task SendEmailAsync(string recipient, string message)
         {

@@ -3,7 +3,7 @@ using Assignment_11.Enums;
 using FluentResults;
 using System.Net.Mail;
 
-namespace Assignment_10
+namespace Assignment_10.Services
 {
     public class EmailValidator(ILogger logger)
     {

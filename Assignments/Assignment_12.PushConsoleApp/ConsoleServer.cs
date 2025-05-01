@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace Assignment_12.PushConsoleApp
 {
@@ -10,31 +9,35 @@ namespace Assignment_12.PushConsoleApp
 
         public static void StartServer()
         {
-            var listener = new TcpListener(IPAddress.Loopback, Port);
-            listener.Start();
-            Console.WriteLine($"Server started, waiting for notifications");
-
-            while (true)
+            using (var listener = new TcpListener(IPAddress.Loopback, Port))
             {
-                using (var client = listener.AcceptTcpClient())
-                {
-                    var networkStream = client.GetStream();
-                    using (var reader = new StreamReader(networkStream, Encoding.UTF8))
-                    {
-                        var message = reader.ReadLine();
-                        if (message != null)
-                        {
-                            if (message == "exit")
-                            {
-                                Console.WriteLine("Received shutdown signal.");
-                                break;
-                            }
+                listener.Start();
+                Console.WriteLine($"Server started, waiting for notifications");
 
-                            Console.WriteLine($"Received push notification: {message}");
+                while (true)
+                {
+                    using (var client = listener.AcceptTcpClient())
+                    {
+                        var networkStream = client.GetStream();
+                        using (var reader = new StreamReader(networkStream))
+                        {
+                            var message = reader.ReadLine();
+                            if (message != null)
+                            {
+                                if (message == "exit")
+                                {
+                                    Console.WriteLine("Received shutdown signal.");
+                                    break;
+                                }
+
+                                Console.WriteLine($"Received push notification: {message}");
+                            }
                         }
                     }
                 }
             }
         }
+
+
     }
 }
