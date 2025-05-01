@@ -11,7 +11,7 @@ namespace Assignment_10
         {
             if (string.IsNullOrEmpty(email))
             {
-                await logger.LogAsync("ValidateEmail", "Email is empty", LogType.Warning);
+                await logger.LogAsync("ValidateEmail", "Email is empty", LogType.Error);
                 return Result.Fail("Email cannot be empty.");
             }               
 
@@ -25,7 +25,7 @@ namespace Assignment_10
                 }
                 else
                 {
-                    await logger.LogAsync("ValidateEmail", "Ivalid email format", LogType.Warning);
+                    await logger.LogAsync("ValidateEmail", "Ivalid email format", LogType.Error);
                     return Result.Fail("Invalid email format.");
                 }
             }
@@ -45,7 +45,7 @@ namespace Assignment_10
             }
             else
             {
-                await logger.LogAsync("ValidateEmailBody", "Message body is empty", LogType.Warning);
+                await logger.LogAsync("ValidateEmailBody", "Message body is empty", LogType.Error);
                 return Result.Fail("Message body cannot be empty.");
             }
         }

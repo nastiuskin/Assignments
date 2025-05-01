@@ -4,6 +4,6 @@ namespace Assignment_11.Contracts
 {
     public interface ILogger
     {
-        Task LogAsync(string methodName, string outcome, LogType logType);
+        Task LogAsync(string methodName, string message, LogType logType);
     }
 }
