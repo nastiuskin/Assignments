@@ -1,6 +1,5 @@
 ﻿using Assignment_13;
 using Assignment_13.Entities;
-using Assignment_13.Exceptions;
 using Assignment_13.Services;
 
 var speaker = new Speaker
