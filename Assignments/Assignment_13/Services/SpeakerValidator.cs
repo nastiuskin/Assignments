@@ -48,5 +48,11 @@ namespace Assignment_13.Services
         }
 
         private string GetEmailDomain(string email) => email.Split('@').Last();
+
+        public bool ValidateBrowser(BrowserName browser)
+        {
+            //if (oshibka throw exception();
+            return true;
+        }
     }
 }

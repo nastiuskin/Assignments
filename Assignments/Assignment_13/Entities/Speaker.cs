@@ -15,5 +15,6 @@ namespace Assignment_13
         public string Employer { get; set; }
         public int RegistrationFee { get; set; }
         public List<Session> Sessions { get; set; }
+        public SpeakerExperience SpeakerExperience { get; set; }
     }
 }
