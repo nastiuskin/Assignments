@@ -12,3 +12,4 @@ namespace Assignment_16.Decorators
         public string GetRawText() => _text.GetRawText();
     }
 }
+

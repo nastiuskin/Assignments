@@ -5,15 +5,15 @@ namespace Assignment_16
 {
     public class TextFormatter
     {
-        private readonly string _originalText;
+        private string _originalText;
         private IText _text;
         private Stack<IText> _history = new();
         public TextFormatter(IText text)
         {
             _text = text;
             _originalText = _text.GetRawText();
+            _history.Push(_text);
         } 
-        
         public void ApplyBold()
         {
             _text = new BoldDecorator(_text);

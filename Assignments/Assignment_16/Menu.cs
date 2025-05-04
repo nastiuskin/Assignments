@@ -44,7 +44,6 @@ namespace Assignment_16
                 else
                 {
                     Console.WriteLine("Invalid input");
-                    //Console.ReadKey();
                 }
             }
         }
