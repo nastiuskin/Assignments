@@ -6,6 +6,8 @@
         public string Description { get; set; }
         public bool Approved { get; set; }
 
+        public Session() { }
+
         public Session(string title, string description)
         {
             Title = title;

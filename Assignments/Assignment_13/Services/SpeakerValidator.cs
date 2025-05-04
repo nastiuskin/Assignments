@@ -13,7 +13,7 @@ namespace Assignment_13.Services
         private static readonly List<string> PreferredEmployers = new() { "Microsoft", "Google", "Fog Creek Software", "37Signals" };
         private static readonly List<string> BlacklistedEmailDomains = new() { "aol.com", "hotmail.com", "prodigy.com", "CompuServe.com" };
 
-        public void ValidateBasicInfo(Speaker speaker)
+        public bool ValidateBasicInfo(Speaker speaker)
         {
             if (string.IsNullOrWhiteSpace(speaker.FirstName))
                 throw new FirstNameIsRequiredException("First name is required.");
@@ -23,6 +23,8 @@ namespace Assignment_13.Services
 
             if (string.IsNullOrWhiteSpace(speaker.Email))
                 throw new EmailIsRequiredException("Email is required.");
+
+            return true;
         }
 
         public bool ValidateSpeaker(Speaker speaker)
@@ -48,11 +50,5 @@ namespace Assignment_13.Services
         }
 
         private string GetEmailDomain(string email) => email.Split('@').Last();
-
-        public bool ValidateBrowser(BrowserName browser)
-        {
-            //if (oshibka throw exception();
-            return true;
-        }
     }
 }

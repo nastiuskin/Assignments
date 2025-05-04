@@ -21,7 +21,6 @@ namespace Assignment_13.Services
             }
 
             if (!validator.ValidateSpeaker(speaker))
-                throw new SpeakerDoesntMeetRequirementsException("Speaker doesn't meet the qualification criteria.");
 
             if (!sessionApprover.ApproveSessions(speaker.Sessions))
                 throw new NoSessionsApprovedException("Can't register speaker with no valid sessions.");

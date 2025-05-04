@@ -4,8 +4,7 @@ namespace Assignment_13.Abstractions
 {
     public interface ISpeakerValidator
     {
-        void ValidateBasicInfo(Speaker speaker);
+        bool ValidateBasicInfo(Speaker speaker);
         bool ValidateSpeaker(Speaker speaker);
-        bool ValidateBrowser(BrowserName browser);
     }
 }

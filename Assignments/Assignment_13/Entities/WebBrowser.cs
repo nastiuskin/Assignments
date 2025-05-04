@@ -26,7 +26,7 @@ namespace Assignment_13.Entities
 
         private static readonly Dictionary<string, BrowserName> BrowserMappings = new(StringComparer.OrdinalIgnoreCase)
         {
-            { "IE", BrowserName.InternetExplorer },
+            { "Internet Explorer", BrowserName.InternetExplorer },
             { "Firefox", BrowserName.Firefox },
             { "Chrome", BrowserName.Chrome },
             { "Opera", BrowserName.Opera },
